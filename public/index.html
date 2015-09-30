@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" data-ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Iceberg Search</title>
+</head>
+<body>
+
+<div data-ng-controller="SearchCtrl as main">
+	<h1>Iceberg Movies</h1>
+
+    <label>Search: <input data-ng-model="searchText" data-ng-change="main.search(searchText)"></label>
+
+    <p data-ng-if="main.message">
+        <label id="messsage">{{main.message}}</label>
+    </p>
+
+    <p data-ng-if="filteredResults.length != main.movies.length && filteredResults.length !== 0 && !main.message">
+        <label id="matchedResults">Matched {{filteredResults.length}} of {{main.movies.length}} movies total</label>
+    </p>
+
+    <p data-ng-if="filteredResults.length == 0">
+        <label id="noMatch
+        ">No matching items</label>
+    </p>
+    <table id="searchTextResults" class="table table-hover table-bordered" contenteditable="true">
+            <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Rating</th>
+            <th>Duration</th>
+            <th>Actors</th>
+        </tr>
+            <tr ng-repeat="movie in filteredResults = (main.movies |  filter:searchText) | orderBy:'+title'| limitTo:20 ">
+            <td>{{$index +1}}</td>
+            <td>{{movie.title}}</td>
+            <td>{{movie.year}}</td>
+            <td>{{movie.rating}}</td>
+            <td>{{movie.duration}}</td>
+            <td>
+                <li data-ng-repeat="actor in movie.actors.list">
+                    <ul>{{actor.name}}</ul>
+                </li>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script src="js/lib/jquery-2.1.4.min.js"></script>
+<script src="js/lib/angular.js"></script>
+<script src="js/lib/angular-mocks.js"></script>
+<script src="js/lib/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css"/>
+<link rel="stylesheet" href="css/bootstrap.css" />
+<script src="js/app.js"></script>
+<script src="js/controllers/SearchController.js"></script>
+<script src="js/services/dataService.js"></script>
+<script src="js/filters/filter.js"></script>
+</body>
+</html>
