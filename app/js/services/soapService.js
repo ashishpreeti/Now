@@ -5,8 +5,8 @@
         .factory('soapService', ['$soap', soapService]);
 
     function soapService($soap) {
-        //var base_url = "http://www.webservicex.net/geoipservice.asmx",
-        var base_url = "http://localhost:8088/mockGeoIPServiceSoap",
+        var base_url = "http://www.webservicex.net/geoipservice.asmx",
+        //var base_url = "http://localhost:8088/mockGeoIPServiceSoap",
             soapAction = "GetGeoIP",
             soapParams = {IPAddress : "192.168.1.10"};
 
