@@ -1,15 +1,21 @@
 (function() {
 
     "use strict";
-    var app = angular.module('app', []);
+    var app = angular.module('app', ['angularSoap']);
 
-    function SearchCtrl(dataService) {
+    function SearchCtrl(dataService, soapService) {
         // load data
         var vm = this;
         var promise = dataService.getJson();
         promise.then(function (data) {
+
             vm.movies = data.movies;
         });
+
+        soapService.getJson()
+            .then(function (data) {
+                console.log("soap Promise "+ JSON.stringify(data));
+            });
 
         vm.message = null;
         vm.search = function (text) {
@@ -21,7 +27,7 @@
         };
     }
 
-    app.controller('SearchCtrl', ['dataService', SearchCtrl]);
+    app.controller('SearchCtrl', ['dataService', 'soapService',  SearchCtrl]);
 
 
 })();

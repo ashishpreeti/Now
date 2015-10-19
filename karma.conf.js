@@ -4,11 +4,11 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'public/js/lib/angular.js',
-            'public/js/lib/angular-mocks.js',
-            'public/js/lib/jquery-2.1.4.min.js',
-            'public/js/lib/bootstrap.min.js',
-            'public/js/**/*.js',
+            'app/js/lib/angular.js',
+            'app/js/lib/angular-mocks.js',
+            'app/js/lib/jquery-2.1.4.min.js',
+            'app/js/lib/bootstrap.min.js',
+            'app/js/**/*.js',
             'test/unit/**/*.spec.js'
         ],
 
